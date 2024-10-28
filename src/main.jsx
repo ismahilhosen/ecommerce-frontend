@@ -2,9 +2,12 @@ import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import Home from "./Home/Home";
 import Root from "./root";
 import ErorrPage from "./ErorrPage";
+import Home from "./page/Home";
+import Register from "./page/Register";
+import { Provider } from "react-redux";
+import store from "./store";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -14,13 +17,18 @@ const router = createBrowserRouter([
       { 
         path: "/", 
         element: <Home></Home>
+      },
+      {
+        path: "/register",
+        element:<Register></Register>
       }
+      
     ],
 	},
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-	<React.StrictMode>
+	<Provider store={store}>
 		<RouterProvider router={router} />
-	</React.StrictMode>
+	</Provider>
 );
